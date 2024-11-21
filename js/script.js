@@ -1,14 +1,16 @@
-
 const totalPriceElement = document.querySelector('.total');
 const productCards = document.querySelectorAll('.card-body');
 
 function updateTotalPrice() {
   let total = 0;
-  productCards.forEach(card => {
+  const updatedProductCards = document.querySelectorAll('.card-body');
+  
+  updatedProductCards.forEach(card => {
     const unitPrice = parseFloat(card.querySelector('.unit-price').innerText.replace('$', ''));
     const quantity = parseInt(card.querySelector('.quantity').innerText);
     total += unitPrice * quantity;
   });
+  
   totalPriceElement.innerText = `${total} $`;
 }
 
@@ -36,8 +38,8 @@ productCards.forEach(card => {
   });
 
   deleteButton.addEventListener('click', () => {
-    card.remove();
-    updateTotalPrice();
+    card.remove(); 
+    updateTotalPrice(); 
   });
 
   likeButton.addEventListener('click', () => {
@@ -45,5 +47,6 @@ productCards.forEach(card => {
     likeButton.style.color = likeButton.classList.contains('liked') ? 'red' : '#888';
   });
 });
+
 
 updateTotalPrice();
